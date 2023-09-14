@@ -26,9 +26,11 @@ public:
             turnRight();
         } else if (command == 'u') {
             turnUp();
-        } else {
+        } else if (command == 'd') {
             turnDown();
-        } 
+        } else {
+            // Handle the case when the command is not recognized
+        }
     }
 
     void moveForward() {
@@ -42,7 +44,7 @@ public:
             x--;
         } else if (direction == 'U') {
             z++;
-        } else {
+        } else if (direction == 'D') {
             z--;
         }
     }
@@ -58,7 +60,7 @@ public:
             x++;
         } else if (direction == 'U') {
             z--;
-        } else {
+        } else if (direction == 'D') {
             z++;
         }
     }
@@ -70,9 +72,29 @@ public:
             direction = 'E';
         } else if (direction == 'E') {
             direction = 'N';
-        } else{
+        } else if (direction == 'W') {
             direction = 'S';
-        } 
+        } else if (direction == 'U') {
+            if (sub == 'N') {
+                direction = 'W';
+            } else if (sub == 'S') {
+                direction = 'E';
+            } else if (sub == 'E') {
+                direction = 'N';
+            } else if (sub == 'W') {
+                direction = 'S';
+            }
+        } else if (direction == 'D') {
+            if (sub == 'N') {
+                direction = 'W';
+            } else if (sub == 'S') {
+                direction = 'E';
+            } else if (sub == 'E') {
+                direction = 'N';
+            } else if (sub == 'W') {
+                direction = 'S';
+            }
+        }
     }
 
     void turnRight() {
@@ -82,9 +104,29 @@ public:
             direction = 'W';
         } else if (direction == 'E') {
             direction = 'S';
-        } else {
+        } else if (direction == 'W') {
             direction = 'N';
-        } 
+        } else if (direction == 'U') {
+            if (sub == 'N') {
+                direction = 'E';
+            } else if (sub == 'S') {
+                direction = 'W';
+            } else if (sub == 'E') {
+                direction = 'S';
+            } else if (sub == 'W') {
+                direction = 'N';
+            }
+        } else if (direction == 'D') {
+            if (sub == 'N') {
+                direction = 'E';
+            } else if (sub == 'S') {
+                direction = 'W';
+            } else if (sub == 'E') {
+                direction = 'S';
+            } else if (sub == 'W') {
+                direction = 'N';
+            }
+        }
     }
 
     void turnUp() {
@@ -109,7 +151,7 @@ public:
 
 int main() {
     LunarCraft chandrayaan3;
-    char commands[] = {'f', 'r', 'u','f'};
+    char commands[] = {'f', 'r', 'u', 'b', 'l'};
 
     for (char command : commands) {
         chandrayaan3.move(command);
