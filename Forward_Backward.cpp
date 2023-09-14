@@ -4,7 +4,7 @@ using namespace std;
 class LunarCraft {
 private:
     int x, y, z; // Current position (x, y, z)
-    char direction; // Current direction (N, S, E, W, U, D)
+    char direction;// Current direction (N, S, E, W, U, D)
     char sub;
 
 public:
@@ -16,129 +16,163 @@ public:
     }
 
     void move(char command) {
-        if (command == 'f') {
-            moveForward();
-        } else if (command == 'b') {
-            moveBackward();
-        } else if (command == 'l') {
-            turnLeft();
-        } else if (command == 'r') {
-            turnRight();
-        } else if (command == 'u') {
-            turnUp();
-        } else if (command == 'd') {
-            turnDown();
-        } else {
-            // Handle the case when the command is not recognized
+        switch (command) {
+            case 'f':
+                moveForward();
+                break;
+            case 'b':
+                moveBackward();
+                break;
+            case 'l':
+                turnLeft();
+                break;
+            case 'r':
+                turnRight();
+                break;
+            case 'u':
+                turnUp();
+                break;
+            case 'd':
+                turnDown();
+                break;
+            default:
+                break;
         }
     }
 
     void moveForward() {
-        if (direction == 'N') {
-            y++;
-        } else if (direction == 'S') {
-            y--;
-        } else if (direction == 'E') {
-            x++;
-        } else if (direction == 'W') {
-            x--;
-        } else if (direction == 'U') {
-            z++;
-        } else if (direction == 'D') {
-            z--;
+        switch (direction) {
+            case 'N':
+                y++;
+                break;
+            case 'S':
+                y--;
+                break;
+            case 'E':
+                x++;
+                break;
+            case 'W':
+                x--;
+                break;
+            case 'U':
+                z++;
+                break;
+            case 'D':
+                z--;
+                break;
         }
     }
 
     void moveBackward() {
-        if (direction == 'N') {
-            y--;
-        } else if (direction == 'S') {
-            y++;
-        } else if (direction == 'E') {
-            x--;
-        } else if (direction == 'W') {
-            x++;
-        } else if (direction == 'U') {
-            z--;
-        } else if (direction == 'D') {
-            z++;
+        switch (direction) {
+            case 'N':
+                y--;
+                break;
+            case 'S':
+                y++;
+                break;
+            case 'E':
+                x--;
+                break;
+            case 'W':
+                x++;
+                break;
+            case 'U':
+                z--;
+                break;
+            case 'D':
+                z++;
+                break;
         }
     }
 
     void turnLeft() {
-        if (direction == 'N') {
-            direction = 'W';
-        } else if (direction == 'S') {
-            direction = 'E';
-        } else if (direction == 'E') {
-            direction = 'N';
-        } else if (direction == 'W') {
-            direction = 'S';
-        } else if (direction == 'U') {
-            if (sub == 'N') {
+        switch (direction) {
+            case 'N':
                 direction = 'W';
-            } else if (sub == 'S') {
+                break;
+            case 'S':
                 direction = 'E';
-            } else if (sub == 'E') {
+                break;
+            case 'E':
                 direction = 'N';
-            } else if (sub == 'W') {
+                break;
+            case 'W':
                 direction = 'S';
-            }
-        } else if (direction == 'D') {
-            if (sub == 'N') {
-                direction = 'W';
-            } else if (sub == 'S') {
-                direction = 'E';
-            } else if (sub == 'E') {
-                direction = 'N';
-            } else if (sub == 'W') {
-                direction = 'S';
-            }
+                break;
+            case 'U':
+                if(sub=='N')
+                direction='W';
+                if(sub=='S')
+                direction='E';
+                if(sub=='E')
+                direction='N';
+                if(sub=='W')
+                direction='S';
+                break;
+            case 'D':
+                if(sub=='N')
+                direction='W';
+                if(sub=='S')
+                direction='E';
+                if(sub=='E')
+                direction='N';
+                if(sub=='W')
+                direction='S';
+                break;
+            
         }
     }
 
     void turnRight() {
-        if (direction == 'N') {
-            direction = 'E';
-        } else if (direction == 'S') {
-            direction = 'W';
-        } else if (direction == 'E') {
-            direction = 'S';
-        } else if (direction == 'W') {
-            direction = 'N';
-        } else if (direction == 'U') {
-            if (sub == 'N') {
+        switch (direction) {
+            case 'N':
                 direction = 'E';
-            } else if (sub == 'S') {
+                break;
+            case 'S':
                 direction = 'W';
-            } else if (sub == 'E') {
+                break;
+            case 'E':
                 direction = 'S';
-            } else if (sub == 'W') {
+                break;
+            case 'W':
                 direction = 'N';
-            }
-        } else if (direction == 'D') {
-            if (sub == 'N') {
-                direction = 'E';
-            } else if (sub == 'S') {
-                direction = 'W';
-            } else if (sub == 'E') {
-                direction = 'S';
-            } else if (sub == 'W') {
-                direction = 'N';
-            }
+                break;
+            case 'U':
+                if(sub=='N')
+                direction='E';
+                if(sub=='S')
+                direction='W';
+                if(sub=='E')
+                direction='S';
+                if(sub=='W')
+                direction='N';
+                break;
+            case 'D':
+                if(sub=='N')
+                direction='E';
+                if(sub=='S')
+                direction='W';
+                if(sub=='E')
+                direction='S';
+                if(sub=='W')
+                direction='N';
+                break;
+            
         }
     }
 
     void turnUp() {
         if (direction != 'U' && direction != 'D') {
-            sub = direction;
+            sub=direction;
             direction = 'U';
+           
         }
     }
 
     void turnDown() {
         if (direction != 'U' && direction != 'D') {
-            sub = direction;
+            sub=direction;
             direction = 'D';
         }
     }
