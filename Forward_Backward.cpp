@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 class LunarCraft {
@@ -183,14 +183,33 @@ public:
     }
 };
 
+vector<char> inputArray() {
+    int size;
+    cout << "Enter the size of the array: ";
+    cin >> size;
+
+    vector<char> commands(size);
+
+    for (int i = 0; i < size; i++) {
+        cout << "Enter command " << i + 1 << ": ";
+        cin >> commands[i];
+    }
+
+    return commands;
+}
+
 int main() {
     LunarCraft chandrayaan3;
-    char commands[] = {'f', 'r', 'u', 'b', 'l'};
 
+    // Call the inputArray function to get the array of commands
+    vector<char> commands = inputArray();
+
+    // Loop through and execute the commands
     for (char command : commands) {
         chandrayaan3.move(command);
     }
 
+    // Print the final position
     chandrayaan3.printPosition();
 
     return 0;
