@@ -22,8 +22,12 @@ public:
             moveBackward();
         } else if (command == 'l') {
             turnLeft();
-        } else{
+        } else if (command == 'r') {
             turnRight();
+        } else if (command == 'u') {
+            turnUp();
+        } else {
+            turnDown();
         } 
     }
 
@@ -34,8 +38,12 @@ public:
             y--;
         } else if (direction == 'E') {
             x++;
-        } else {
+        } else if (direction == 'W') {
             x--;
+        } else if (direction == 'U') {
+            z++;
+        } else {
+            z--;
         }
     }
 
@@ -46,8 +54,12 @@ public:
             y++;
         } else if (direction == 'E') {
             x--;
-        } else {
+        } else if (direction == 'W') {
             x++;
+        } else if (direction == 'U') {
+            z--;
+        } else {
+            z++;
         }
     }
 
@@ -60,7 +72,7 @@ public:
             direction = 'N';
         } else{
             direction = 'S';
-        }
+        } 
     }
 
     void turnRight() {
@@ -70,12 +82,24 @@ public:
             direction = 'W';
         } else if (direction == 'E') {
             direction = 'S';
-        } else{
+        } else {
             direction = 'N';
+        } 
+    }
+
+    void turnUp() {
+        if (direction != 'U' && direction != 'D') {
+            sub = direction;
+            direction = 'U';
         }
     }
 
-
+    void turnDown() {
+        if (direction != 'U' && direction != 'D') {
+            sub = direction;
+            direction = 'D';
+        }
+    }
 
     void printPosition() {
         cout << "Final Position: (" << x << ", " << y << ", " << z << ")" << endl;
@@ -85,7 +109,7 @@ public:
 
 int main() {
     LunarCraft chandrayaan3;
-    char commands[] = {'f', 'r', 'l', 'f', 'l', 'b'};
+    char commands[] = {'f', 'r', 'u','f'};
 
     for (char command : commands) {
         chandrayaan3.move(command);
